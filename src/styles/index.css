@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+/* 1. Global Reset & Fonts */
+:root {
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  @apply bg-gray-50 text-gray-900 overflow-x-hidden;
+  margin: 0;
+  padding: 0;
+  /* Mencegah highlight biru saat tap di HP */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 2. Custom Typography */
+.font-logo {
+  font-family: 'Poetsen One', sans-serif;
+}
+
+/* 3. Gaya Khas Jastip App (Custom Components) */
+@layer components {
+  /* Kartu Putih Melengkung Lebar (Sesuai Desain LoginPage) */
+  .jastip-card {
+    @apply bg-white rounded-[2.5rem] shadow-2xl p-10 flex flex-col items-center border border-gray-50;
+  }
+
+  /* Input Field Halus & Modern */
+  .jastip-input {
+    @apply w-full bg-gray-50 border border-gray-100 rounded-full py-4 px-7 
+           text-sm outline-none focus:ring-2 focus:ring-[#FA4F82] 
+           transition-all placeholder:text-gray-300 shadow-sm;
+  }
+
+  /* Tombol Utama Pink Bergradien */
+  .btn-pink {
+    @apply w-full bg-gradient-to-r from-[#FA4F82] to-[#942E4D] text-white 
+           font-bold py-4 rounded-full shadow-lg shadow-pink-200 
+           active:scale-95 transition-all uppercase text-[10px] tracking-widest;
+  }
+}
+
+/* 4. PWA & Mobile Optimization Hacks */
+
+/* Sembunyikan Scrollbar agar terlihat seperti Native App */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mencegah "Pull to Refresh" yang mengganggu navigasi */
+html, body {
+  overscroll-behavior-y: contain;
+}
+
+/* Animasi Halus Saat Halaman Terbuka */
+.animate-fade-in {
+  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+/* Tambahan untuk Bottom Navigation agar selalu di atas */
+nav {
+  z-index: 50;
+}

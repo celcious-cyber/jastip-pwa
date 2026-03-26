@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koneksi Terputus - Jastip App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen p-6">
+    <div class="max-w-md w-full text-center space-y-6">
+        <div class="flex justify-center">
+            <div class="w-24 h-24 bg-pink-100 rounded-[2.5rem] flex items-center justify-center text-[#FA4F82] animate-pulse shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.5C14.73 6.5 17.21 7.6 19.04 9.38L21.41 7C19.05 4.64 15.7 3.2 12 3.2C8.3 3.2 4.95 4.64 2.59 7L4.96 9.37C6.79 7.59 9.27 6.5 12 6.5ZM17.15 11.27C15.69 9.94 13.9 9.17 12 9.17C10.1 9.17 8.31 9.94 6.85 11.27L9.22 13.64C10 12.86 10.95 12.42 12 12.42C13.05 12.42 14 12.86 14.78 13.64L17.15 11.27ZM1 2L3.1 4.1L22 23L23 22L17.7 16.7L12 21.37L2.1 11.47C1 12.47 1.25 13.5 1 14.5L1 14.5L3.1 16.6C3.04 16.27 3 15.93 3 15.58C3 13.2 3.86 11.03 5.3 9.4L1 5.1L1 2Z" />
+                </svg>
+            </div>
+        </div>
+
+        <div class="space-y-2">
+            <h1 class="text-3xl font-black text-[#942E4D] italic uppercase tracking-tighter">Ups! Sinyal Hilang</h1>
+            <p class="text-gray-500 font-medium text-sm px-4">
+                Sepertinya koneksi internetmu terputus. Tenang, data pesanan terakhirmu tetap tersimpan aman di aplikasi.
+            </p>
+        </div>
+
+        <div class="pt-4">
+            <button onclick="window.location.reload()" 
+                class="w-full bg-[#942E4D] text-white py-4 rounded-2xl font-black text-[11px] uppercase tracking-widest shadow-xl shadow-pink-100 active:scale-95 transition-all">
+                Coba Hubungkan Kembali
+            </button>
+            <p class="text-[9px] font-black text-gray-300 uppercase tracking-widest mt-6">Jastip App - Mode Offline</p>
+        </div>
+    </div>
+</body>
+</html>
