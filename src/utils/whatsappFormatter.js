@@ -22,15 +22,18 @@ export const sendWhatsAppInvoice = (inv, profile) => {
 
   if (!rek) {
     infoRekening = "(Belum diatur di Pengaturan)";
-  } else if (Array.isArray(rek)) {
+  } 
+  else if (Array.isArray(rek)) {
     // Jika data berupa Array (Banyak Bank)
     infoRekening = rek.map(r => 
-      `${r.bank || ''} ${r.nomor || r.no_rek || ''} a/n ${r.nama || r.atas_nama || ''}`
-    ).join('\n');
-  } else if (typeof rek === 'object') {
-    // Jika data berupa satu Object {bank: '...', nomor: '...', nama: '...'}
-    infoRekening = `${rek.bank || ''} ${rek.nomor || rek.no_rek || ''}\na/n ${rek.nama || rek.atas_nama || ''}`;
-  } else {
+      `• ${r.bank || '-'} — ${r.nomor || r.no_rek || '-'}\na.n. ${r.nama || r.atas_nama || '-'}`
+    ).join('\n\n');
+  } 
+  else if (typeof rek === 'object') {
+    // Jika data berupa satu Object
+    infoRekening = `• ${rek.bank || '-'} — ${rek.nomor || rek.no_rek || '-'}\na.n. ${rek.nama || rek.atas_nama || '-'}`;
+  } 
+  else {
     // Jika data sudah berupa teks biasa
     infoRekening = rek;
   }
@@ -56,9 +59,21 @@ ${infoRekening}
 
 ${profile?.text_penutup_wa || 'Terima kasih sudah mempercayai kami!'}`;
 
-  // 5. Eksekusi URL dengan api.whatsapp.com (Lebih Stabil)
-  const phone = inv.customers?.no_telpon?.replace(/\D/g, '') || '';
-  const finalUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
-  
+  // 5. Format Nomor (Pastikan ke 62)
+  let phone = inv.customers?.no_telpon?.replace(/\D/g, '') || '';
+
+  if (phone.startsWith('0')) {
+    phone = '62' + phone.slice(1);
+  }
+
+  // Validasi nomor
+  if (!phone || phone.length < 10) {
+    alert('Nomor pelanggan tidak valid');
+    return;
+  }
+
+  // 6. Eksekusi URL WhatsApp
+  const finalUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
   window.open(finalUrl, '_blank');
 };
